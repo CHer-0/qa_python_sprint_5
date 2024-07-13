@@ -1,13 +1,13 @@
+from links import Links
 from locators import TestLocators
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 
 
 class TestPersonalCabToConstructor:
-    main_url = 'https://stellarburgers.nomoreparties.site/'
 
     def test_personal_cab_to_constructor_click(self, driver):
-        driver.get(self.main_url + 'login')
+        driver.get(Links.LOGIN)
         # Дождемся явного ожидания для загрузки кнопки Войти на форме авторизации
         WebDriverWait(driver, 2).until(expected_conditions.presence_of_element_located(TestLocators.ENTER_ENTER))
         # Зайдем под уже созданной учетной записью
@@ -31,10 +31,10 @@ class TestPersonalCabToConstructor:
         # Дождемся явного ожидания для загрузки кнопки "Оформить заказ"
         WebDriverWait(driver, 2).until(expected_conditions.presence_of_element_located(TestLocators.ORDER_PLACE))
 
-        assert driver.current_url == self.main_url
+        assert driver.current_url == Links.MAIN
 
     def test_personal_cab_to_logo_click(self, driver):
-        driver.get(self.main_url + 'login')
+        driver.get(Links.LOGIN)
         # Дождемся явного ожидания для загрузки кнопки Войти на форме авторизации
         WebDriverWait(driver, 2).until(expected_conditions.presence_of_element_located(TestLocators.ENTER_ENTER))
         # Зайдем под уже созданной учетной записью
@@ -59,4 +59,4 @@ class TestPersonalCabToConstructor:
         # Дождемся явного ожидания для загрузки кнопки "Оформить заказ"
         WebDriverWait(driver, 2).until(expected_conditions.presence_of_element_located(TestLocators.ORDER_PLACE))
 
-        assert driver.current_url == self.main_url
+        assert driver.current_url == Links.MAIN

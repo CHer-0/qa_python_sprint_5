@@ -1,13 +1,13 @@
+from links import Links
 from locators import TestLocators
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 
 
 class TestExitFromAccount:
-    main_url = 'https://stellarburgers.nomoreparties.site/'
 
     def test_exit_from_account(self, driver):
-        driver.get(self.main_url + 'login')
+        driver.get(Links.LOGIN)
         # Дождемся явного ожидания для загрузки кнопки Войти на форме авторизации
         WebDriverWait(driver, 2).until(expected_conditions.presence_of_element_located(TestLocators.ENTER_ENTER))
         # Зайдем под уже созданной учетной записью
@@ -27,6 +27,6 @@ class TestExitFromAccount:
         WebDriverWait(driver, 2).until(expected_conditions.presence_of_element_located(TestLocators.EXIT_PERSONAL_CAB))
 
         driver.find_element(*TestLocators.EXIT_PERSONAL_CAB).click()
-        WebDriverWait(driver, 2).until(expected_conditions.url_matches(self.main_url + 'login'))
+        WebDriverWait(driver, 2).until(expected_conditions.url_matches(Links.LOGIN))
 
-        assert driver.current_url == self.main_url + 'login'
+        assert driver.current_url == Links.LOGIN

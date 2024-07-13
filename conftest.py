@@ -14,6 +14,7 @@ def driver():
     yield driver
     driver.quit()
 
+
 @pytest.fixture
 def generate_data():
     # Пусть тестовый логин будет содержать от 3 до 8 букв и от 3 до 8 цифр в случайном порядке

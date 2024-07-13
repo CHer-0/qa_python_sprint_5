@@ -1,13 +1,13 @@
+from links import Links
 from locators import TestLocators
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 
 
 class TestRegistration:
-    main_url = 'https://stellarburgers.nomoreparties.site/'
 
     def test_registration_valid_account(self, driver, generate_data):
-        driver.get(self.main_url + 'register')
+        driver.get(Links.REGISTER)
         # Дождемся явного ожидания для загрузки кнопки Войти на форме регистрации
         WebDriverWait(driver, 2).until(expected_conditions.presence_of_element_located(TestLocators.ENTER_REGISTER))
 
@@ -22,12 +22,12 @@ class TestRegistration:
         driver.find_element(*TestLocators.ENTER_ENTER).click()
 
         # Дождемся явного ожидания для загрузки формы авторизации
-        WebDriverWait(driver, 2).until(expected_conditions.url_matches(self.main_url + 'login'))
+        WebDriverWait(driver, 2).until(expected_conditions.url_matches(Links.LOGIN))
 
-        assert driver.current_url == self.main_url + 'login'
+        assert driver.current_url == Links.LOGIN
 
     def test_registration_pass_less_than_6(self, driver, generate_data):
-        driver.get(self.main_url + 'register')
+        driver.get(Links.REGISTER)
         # Дождемся явного ожидания для загрузки кнопки Войти на форме регистрации
         WebDriverWait(driver, 2).until(expected_conditions.presence_of_element_located(TestLocators.ENTER_REGISTER))
 
